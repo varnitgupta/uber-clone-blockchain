@@ -7,8 +7,8 @@ const style = {
   wrapper: 'flex-1 h-full w-full'
 } 
 
-console.log(process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN );
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN 
+console.log(process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN );
 
 
 
