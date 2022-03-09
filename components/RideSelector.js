@@ -56,7 +56,7 @@ const RideSelector = () => {
   return (
     <div className={style.wrapper}>
       <div className={style.title}>Choose a ride, or swipe up for more </div> 
-      <div classname = {style.carList}>
+      <div className = {style.carList}>
         {carList.map((car, index)=>{
           <div className={style.car}>
               <Image
