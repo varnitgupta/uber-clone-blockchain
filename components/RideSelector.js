@@ -69,7 +69,7 @@ const RideSelector = () => {
       } catch (error) {
         console.log(error);
       }
-    })
+    })()
   },[])
 
   return (
