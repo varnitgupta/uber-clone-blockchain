@@ -26,7 +26,6 @@ const RideSelector = () => {
 
         const data = await response.json()
         setCarList(data.data)
-        setSelectedRide(data.data[0])
       } catch (error) {
         console.error(error)
       }
@@ -40,15 +39,7 @@ const RideSelector = () => {
         {carList.map((car, index) => (
           <div
             key={index}
-            className={`${
-              selectedRide.service === car.service
-                ? style.selectedCar
-                : style.car
-            }`}
-            onClick={() => {
-              setSelectedRide(car)
-              setPrice(((basePrice / 10 ** 5) * car.priceMultiplier).toFixed(5))
-            }}
+            className={style.car}
           >
             <Image
               src={car.iconUrl}
