@@ -9,7 +9,8 @@ const query = `*[_type=="rides"]{
 
 
   const getRideTypes = async (req,res)=>{
-      try {
+      try { 
+          console.log('dfds' + req,res);
           const sanityResaponse = await client.fetch(query) 
           res.status(200).send({message:'success', data: sanityResaponse})
       } catch (error) { 
