@@ -63,7 +63,8 @@ const RideSelector = () => {
       try {
         const respose = await fetch('/api/db/getRideTypes') 
 
-        const data = await responseSymbol.json() 
+        const data = await responseSymbol.json()  
+        console.log(data.data);
         setCarList(data.data)
       } catch (error) {
         console.log(error);
@@ -81,7 +82,8 @@ const RideSelector = () => {
                 src ={car.iconUrl} 
                 className = {style.carImage}  
                 height = {50}
-                width = {50}
+                width = {50} 
+                alt=''
               /> 
               <div className={style.carDetails}>
                 <div className={style.service}>{car.service}</div>
