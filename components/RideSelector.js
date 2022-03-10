@@ -76,7 +76,7 @@ const RideSelector = () => {
       <div className={style.title}>Choose a ride, or swipe up for more </div> 
       <div className = {style.carList}>
         {carList.map((car, index)=>(
-          <div className={style.car}>
+          <div key={car.orderById} className={style.car}>
               <Image
                 src ={car.iconUrl} 
                 className = {style.carImage}  
