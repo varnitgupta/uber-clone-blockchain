@@ -61,9 +61,9 @@ const RideSelector = () => {
   useEffect(()=>{
     ;(async ()=>{
       try {
-        const respose = await fetch('/api/db/getRideTypes') 
+        const response = await fetch('/api/db/getRideTypes') 
 
-        const data = await responseSymbol.json()  
+        const data = await response.json()  
         console.log(data.data);
         setCarList(data.data)
       } catch (error) {
