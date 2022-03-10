@@ -1,4 +1,4 @@
-import React from 'react'  
+import React, { useEffect } from 'react'  
 import Image from 'next/image' 
 import uberX from '../assets/rides/uberX.png'
 import uberXL from '../assets/rides/uberXL.png'
@@ -6,6 +6,8 @@ import uberSelect from '../assets/rides/uberSelect.png'
 import uberBlackSuv from '../assets/rides/uberBlackSuv.png'
 import uberBlack from '../assets/rides/uberBlack.png'
 import ethLogo from '../assets/eth-logo.png'
+import { responseSymbol } from 'next/dist/server/web/spec-compliant/fetch-event'
+import { useState } from 'react/cjs/react.development'
 
 const style = {
   wrapper: `h-full flex flex-col z-20`,
@@ -22,42 +24,58 @@ const style = {
 }  
 
 
-const carList = [
-  {
-    service: 'UberX',  
-    iconUrl : uberX, 
-    priceMultiplier : 1, 
-  },
-  {
-    service: 'UberBlack',  
-    iconUrl : uberBlack, 
-    priceMultiplier : 1.5, 
-  },
-  {
-    service: 'UberBlackSuv',  
-    iconUrl : uberBlackSuv, 
-    priceMultiplier : 1.5, 
-  },
-  {
-    service: 'UberSelect',  
-    iconUrl : uberSelect, 
-    priceMultiplier : 1.5, 
-  },
-  {
-    service: 'UberXL',  
-    iconUrl : uberXL, 
-    priceMultiplier : 1.5, 
-  },
-] 
+// const carList = [
+//   {
+//     service: 'UberX',  
+//     iconUrl : uberX, 
+//     priceMultiplier : 1, 
+//   },
+//   {
+//     service: 'UberBlack',  
+//     iconUrl : uberBlack, 
+//     priceMultiplier : 1.5, 
+//   },
+//   {
+//     service: 'UberBlackSuv',  
+//     iconUrl : uberBlackSuv, 
+//     priceMultiplier : 1.5, 
+//   },
+//   {
+//     service: 'UberSelect',  
+//     iconUrl : uberSelect, 
+//     priceMultiplier : 1.5, 
+//   },
+//   {
+//     service: 'UberXL',  
+//     iconUrl : uberXL, 
+//     priceMultiplier : 1.5, 
+//   },
+// ] 
 
-const basePrice = 15
+const basePrice = 1542 
 
-const RideSelector = () => {
+const RideSelector = () => {  
+
+  const [carList, setCarList] = useState([])
+
+  useEffect(()=>{
+    ;(async ()=>{
+      try {
+        const respose = await fetch('/api/db/getRideTypes') 
+
+        const data = await responseSymbol.json() 
+        setCarList(data.data)
+      } catch (error) {
+        console.log(error);
+      }
+    })
+  },[])
+
   return (
     <div className={style.wrapper}>
       <div className={style.title}>Choose a ride, or swipe up for more </div> 
       <div className = {style.carList}>
-        {carList.map((car, index)=>{
+        {carList.map((car, index)=>(
           <div className={style.car}>
               <Image
                 src ={car.iconUrl} 
@@ -72,11 +90,11 @@ const RideSelector = () => {
                   <div className = {style.price}>
                     {((basePrice/10 ** 5)* car.priceMultiplier).toFixed(5)} 
                   </div> 
-                  <Image src = {ethLogo}/>
+                  <Image src = {ethLogo} height={24} width={40}/>
                 </div>
               </div>
           </div>
-        })}
+        ))}
       </div>
     </div>
   )

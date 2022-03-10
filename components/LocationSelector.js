@@ -35,7 +35,7 @@ const LocationSelector = () => {
                         />
                     </svg>
                 </div> 
-                <input className={style.input} placeholder = 'Enter pickup loaction' value={pickup} onChange={e=> setPickup(e.target.value)} onFocus={()=>setInFocus('from')} />
+                <input className={style.input} placeholder = 'Enter pickup location' value={pickup} onChange={e=> setPickup(e.target.value)} onFocus={()=>setInFocus('from')} />
             </div> 
             
             <div className={style.verticalLine}></div> 
